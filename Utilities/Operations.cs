@@ -7,7 +7,7 @@ public class Operations
 	/// </summary>
 	/// <param name="a"></param>
 	/// <param name="b"></param>
-   public void Substract(double a, double b) //num1 = a ; num2 = b
+   public static void Substract(double a, double b) //num1 = a ; num2 = b
    {
 	   double result = 0;
 	   
@@ -44,4 +44,12 @@ public class Operations
 		Console.WriteLine($"Resultado {a} * {b} = {result}");
 	   
    }
+   
+   public static void Power(double baseNum, int exponente)
+   {
+	   double pow = Math.Pow(baseNum, exponente);
+	   
+	   Console.WriteLine($"Potencia de {baseNum} con un exponente de {exponente} es igual a {pow}");
+   }
+   
 }

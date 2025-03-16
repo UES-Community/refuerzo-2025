@@ -6,30 +6,21 @@ class Program
 	static void Main(string[] args)
 	{
 
-		// Declaracion e inicializacion de variables
-		double num1, num2; //entradas
+		double baseNum;
+		List<int> potencias = new List<int> { 2, 3, 4, 5 };
 		
-		double numValidated1, numValidated2; //procesos
-		Operations sum; //procesos
-		
-		double result = 0; // salida
+		double numValidated1, numValidated2; 
 		
 		// Entrada de datos
-		Console.Write("Ingresa el primer número: ");  // impresion del mensaje
-		numValidated1 = Validations.ValidateNumber(Console.ReadLine());	// validacion de la entrada
-		num1 = Convert.ToDouble(numValidated1); // conversion de la entrada
+		Console.Write("Ingrese la base del numero: ");
+		numValidated1 = Validations.ValidateNumber(Console.ReadLine());
+		baseNum = Convert.ToDouble(numValidated1); 
 		
-		Console.Write("Ingresa el segundo número: ");
-		numValidated2 = Validations.ValidateNumber(Console.ReadLine());	// validacion de la entrada
-		num2 = Convert.ToDouble(numValidated2);
+		// Potencia
+		foreach (int cuarto in potencias)
+		{
+			Operations.Power(baseNum, cuarto);
+		}
 		
-		// Operaciones
-		
-		// Restar
-		sum = new Operations();
-		sum.Substract(num1, num2);
-		
-		// Multiplicar
-		Operations.Multiply(num1, num2); 
 	}
 }

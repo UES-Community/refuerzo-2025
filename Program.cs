@@ -6,21 +6,25 @@ class Program
 	static void Main(string[] args)
 	{
 
-		double baseNum;
-		List<int> potencias = new List<int> { 2, 3, 4, 5 };
-		
-		double numValidated1, numValidated2; 
+		double ladoTriangulo, alturaRectangulo;
+		double numValidated1, numValidated2;
+		double areaT, volumenT;
 		
 		// Entrada de datos
-		Console.Write("Ingrese la base del numero: ");
+		Console.Write("Ingrese el valor de uno de los lados del triangulo: ");
 		numValidated1 = Validations.ValidateNumber(Console.ReadLine());
-		baseNum = Convert.ToDouble(numValidated1); 
+		ladoTriangulo = Convert.ToDouble(numValidated1); 
 		
-		// Potencia
-		foreach (int cuarto in potencias)
-		{
-			Operations.Power(baseNum, cuarto);
-		}
+		Console.Write("Ingrese la altura del rectangulo: ");
+		numValidated2 = Validations.ValidateNumber(Console.ReadLine());
+		alturaRectangulo = Convert.ToDouble(numValidated1); 
+		
+		// Operacion de calculo de area y volumne
+		areaT = Geom.AreaSuperficialPrismaTriangular(ladoTriangulo, alturaRectangulo);
+		volumenT = Geom.VolumenPrismaTriangular(ladoTriangulo, alturaRectangulo);
+		
+		Console.WriteLine($"El area del prisma triangular es: {areaT} cm cuadrado");
+		Console.WriteLine($"El volumen del prisma triangular es: {volumenT} cm cubico");
 		
 	}
 }

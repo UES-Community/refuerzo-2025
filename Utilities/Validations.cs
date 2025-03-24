@@ -16,4 +16,22 @@ public class Validations
 
         return result;
     }
+
+    public static string NotEmpty(string input)
+    {
+
+        string inputToReturn;
+        
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            inputToReturn = "Sin nombre";
+        }
+        
+        else
+        {
+            inputToReturn = input;
+        }
+        
+        return inputToReturn;
+    }
 }

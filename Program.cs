@@ -6,25 +6,37 @@ class Program
 	static void Main(string[] args)
 	{
 
-		double ladoTriangulo, alturaRectangulo;
-		double numValidated1, numValidated2;
-		double areaT, volumenT;
+		double numValidated1, numValidated2, numValidated3, numValidated4, productPrice;
+		String productName; 
+		
+		double pricePerSecond, pricePerByte, secondsConsumed, bytesConsumed;
 		
 		// Entrada de datos
-		Console.Write("Ingrese el valor de uno de los lados del triangulo: ");
+		// Console.Write("Ingrese el nombre del producto: ");
+		// productName = Validations.NotEmpty(Console.ReadLine());
+		Console.Write("Ingrese el precio unitario por segundo de llamada: ");
 		numValidated1 = Validations.ValidateNumber(Console.ReadLine());
-		ladoTriangulo = Convert.ToDouble(numValidated1); 
+		pricePerSecond = Convert.ToDouble(numValidated1);
 		
-		Console.Write("Ingrese la altura del rectangulo: ");
+		Console.Write("Ingrese el precio unitario por byte: ");
 		numValidated2 = Validations.ValidateNumber(Console.ReadLine());
-		alturaRectangulo = Convert.ToDouble(numValidated1); 
+		pricePerByte = Convert.ToDouble(numValidated2);
 		
-		// Operacion de calculo de area y volumne
-		areaT = Geom.AreaSuperficialPrismaTriangular(ladoTriangulo, alturaRectangulo);
-		volumenT = Geom.VolumenPrismaTriangular(ladoTriangulo, alturaRectangulo);
+		//
+		// Console.Write("Ingrese el costo del producto: ");
+		// numValidated2 = Validations.ValidateNumber(Console.ReadLine());
+		// productPrice = Convert.ToDouble(numValidated2);
+		Console.Write("Ingrese el monto en segundo consumidos: ");
+		numValidated3 = Validations.ValidateNumber(Console.ReadLine());
+		secondsConsumed = Convert.ToDouble(numValidated2);
 		
-		Console.WriteLine($"El area del prisma triangular es: {areaT} cm cuadrado");
-		Console.WriteLine($"El volumen del prisma triangular es: {volumenT} cm cubico");
+		Console.Write("Ingrese el monto en bytes consumidos: ");
+		numValidated4 = Validations.ValidateNumber(Console.ReadLine());
+		bytesConsumed = Convert.ToDouble(numValidated2);
+		
+		// Proceso
+		// ECommerce.ConsumerPrice(productName, productPrice);
+		ECommerce.ComunicationPrice(pricePerSecond, pricePerByte, secondsConsumed, bytesConsumed);
 		
 	}
 }

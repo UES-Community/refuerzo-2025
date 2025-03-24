@@ -5,38 +5,40 @@ class Program
 {
 	static void Main(string[] args)
 	{
+		
+		double firstEntry, secondEntry, thirdEntry;
+		double numValidated1, numValidated2, numValidated3;
 
-		double numValidated1, numValidated2, numValidated3, numValidated4, productPrice;
-		String productName; 
-		
-		double pricePerSecond, pricePerByte, secondsConsumed, bytesConsumed;
-		
-		// Entrada de datos
-		// Console.Write("Ingrese el nombre del producto: ");
-		// productName = Validations.NotEmpty(Console.ReadLine());
-		Console.Write("Ingrese el precio unitario por segundo de llamada: ");
+		Console.Write("Ingrese el primer número: ");
 		numValidated1 = Validations.ValidateNumber(Console.ReadLine());
-		pricePerSecond = Convert.ToDouble(numValidated1);
+		firstEntry = Convert.ToDouble(numValidated1);
 		
-		Console.Write("Ingrese el precio unitario por byte: ");
+		Console.Write("Ingrese el segundo numero: ");
 		numValidated2 = Validations.ValidateNumber(Console.ReadLine());
-		pricePerByte = Convert.ToDouble(numValidated2);
-		
-		//
-		// Console.Write("Ingrese el costo del producto: ");
-		// numValidated2 = Validations.ValidateNumber(Console.ReadLine());
-		// productPrice = Convert.ToDouble(numValidated2);
-		Console.Write("Ingrese el monto en segundo consumidos: ");
+		secondEntry = Convert.ToDouble(numValidated2);
+
+		Console.Clear();
+		Console.Write("Ingrese el tipo de operacion desea realizar: ");
+		Console.Write("\n1 - Resta\n2 - Multiplicacion\n3 - Potencia\n");
 		numValidated3 = Validations.ValidateNumber(Console.ReadLine());
-		secondsConsumed = Convert.ToDouble(numValidated2);
+		thirdEntry = Convert.ToDouble(numValidated3);
 		
-		Console.Write("Ingrese el monto en bytes consumidos: ");
-		numValidated4 = Validations.ValidateNumber(Console.ReadLine());
-		bytesConsumed = Convert.ToDouble(numValidated2);
-		
-		// Proceso
-		// ECommerce.ConsumerPrice(productName, productPrice);
-		ECommerce.ComunicationPrice(pricePerSecond, pricePerByte, secondsConsumed, bytesConsumed);
-		
+		//Condicionales
+
+		switch (thirdEntry)
+		{
+			case 1:	
+				Operations.Substract(firstEntry, secondEntry);
+				break;
+			case 2:
+				Operations.Multiply(firstEntry, secondEntry);
+				break;
+			case 3:
+				Operations.Power(firstEntry, secondEntry);
+				break;
+			default:
+				Console.WriteLine("Por favor ingrese una opcion valida");
+				break;
+		}
 	}
 }

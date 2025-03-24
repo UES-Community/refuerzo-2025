@@ -45,7 +45,7 @@ public class Operations
 	   
    }
    
-   public static void Power(double baseNum, int exponente)
+   public static void Power(double baseNum, double exponente)
    {
 	   double pow = Math.Pow(baseNum, exponente);
 	   

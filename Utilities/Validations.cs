@@ -13,6 +13,7 @@ public class Validations
             Console.WriteLine("Por favor ingrese un valor numerico");
             return 0;
         }
+        
 
         return result;
     }

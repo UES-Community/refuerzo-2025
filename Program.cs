@@ -7,11 +7,18 @@ class Program
 	static void Main(string[] args)
 	{
 
-		int number;
+		const int DAYS = 6;
+		int[] daylyProd = new int[DAYS];
+		string[] days = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"};
+
+		for (int i = 0; i < DAYS; i++)
+		{
+			Console.WriteLine($"Ingrese la produccion del dia {days[i]}"); //days[0] = "Lunes"
+			daylyProd[i] = Validations.ValidateNumber(Console.ReadLine());
+		}
 		
-		Console.Write("Ingrese el año que desea verificar: ");
-		number = Validations.ValidateNumber(Console.ReadLine());
+		Console.Clear();
+		Conditionals.ProductionStats(daylyProd);
 		
-		Conditionals.IsLeapYear(number); //Aca estoy llamando a mi modulo de condicionales en mi flujo principal
 	}
 }

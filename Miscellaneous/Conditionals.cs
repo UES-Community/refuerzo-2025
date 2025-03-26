@@ -26,7 +26,7 @@ public class Conditionals
         bool deservesIncentive = false;
 
         totalProd = prodPerDay.Sum(); // iteracion (for) 0 <= 5 {i++}
-        meanProd = prodPerDay.Average(); // iteracion (for) 0 <= 5 {i++ / prodPerDay.Length}
+        meanProd = double.Round(prodPerDay.Average(), 2); // iteracion (for) 0 <= 5 {i++ / prodPerDay.Length}
 
         if (meanProd > MIN_PROD)
         {

@@ -46,4 +46,35 @@ public class Conditionals
         }
         
     }
+
+    /// <summary>
+    /// Asigna porcentaje de bono por antiguedad
+    /// </summary>
+    /// <param name="yearsWorked"> Cantidad de anios laborados </param>
+    /// <returns> Porcentaje segun tabla de equivalencia por anios </returns>
+    public static double AntiquityBonus(int yearsWorked)
+    {
+       double porcent; //null
+
+       switch (yearsWorked)
+       {
+           case >= 10:
+               porcent = 0.20;
+               break;
+           case >= 5:
+               porcent = 0.15;
+               break;
+           case >= 3:
+               porcent = 0.1;
+               break;
+           case >= 2:
+               porcent = 0.05;
+               break;
+           default:
+               porcent = 0.0;
+               break;
+       }
+
+       return porcent;
+    }
 }

@@ -7,18 +7,20 @@ class Program
 	static void Main(string[] args)
 	{
 
-		const int DAYS = 6;
-		int[] daylyProd = new int[DAYS];
-		string[] days = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"};
-
-		for (int i = 0; i < DAYS; i++)
-		{
-			Console.WriteLine($"Ingrese la produccion del dia {days[i]}"); //days[0] = "Lunes"
-			daylyProd[i] = Validations.ValidateNumber(Console.ReadLine());
-		}
+		int years;
+		double monthlySalary, percentage, bonusAmount;
 		
-		Console.Clear();
-		Conditionals.ProductionStats(daylyProd);
+		Console.WriteLine("Ingresa la cantidad de años trabajados: ");
+		years = Validations.ValidateInteger(Console.ReadLine());
+		
+		percentage = Conditionals.AntiquityBonus(years);
+		
+		Console.WriteLine("Ingresa salario mensual recibido: ");
+		monthlySalary = Validations.ValidateDouble(Console.ReadLine());
+		
+		bonusAmount = monthlySalary * percentage;
+		
+		Console.WriteLine($"El bono por antiguedad es de: {bonusAmount}");
 		
 	}
 }

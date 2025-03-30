@@ -7,20 +7,42 @@ class Program
 	static void Main(string[] args)
 	{
 
-		int years;
-		double monthlySalary, percentage, bonusAmount;
+		int periodInput;
+		double salaryInput, ISRCalculated;
+
+		// Solicitud de frecuencia de pago
+		Console.WriteLine("Por favor ingrese el periodo de pago con el que quiere trabajar: ");
+		Console.WriteLine("---------------------------------------------------------------- ");
+		Console.WriteLine(" 1) Semanal");
+		Console.WriteLine(" 2) Quincenal");
+		Console.WriteLine(" 3) Mensual");
+		Console.WriteLine("---------------------------------------------------------------- ");
 		
-		Console.WriteLine("Ingresa la cantidad de años trabajados: ");
-		years = Validations.ValidateInteger(Console.ReadLine());
+		periodInput = Validations.ValidateInteger(Console.ReadLine());
+		Console.Clear();
 		
-		percentage = Conditionals.AntiquityBonus(years);
+		// Solcitud de salario
+		Console.WriteLine("Por favor ingrese el salario gravable: ");
+		salaryInput = Validations.ValidateDouble(Console.ReadLine());
+
+		// Seleccion de tabla con base a la frecuencia de pago
+		switch (periodInput)
+		{
+			case 1:
+				ISRCalculated = ISR.WeeklyTable(salaryInput);
+				break;
+			case 2:
+				ISRCalculated = ISR.BiweeklyTable(salaryInput);
+				break;
+			case 3:
+				ISRCalculated = ISR.MonthlyTable(salaryInput);
+				break;
+			default:
+				ISRCalculated = 0;
+				break;
+		}
 		
-		Console.WriteLine("Ingresa salario mensual recibido: ");
-		monthlySalary = Validations.ValidateDouble(Console.ReadLine());
-		
-		bonusAmount = monthlySalary * percentage;
-		
-		Console.WriteLine($"El bono por antiguedad es de: {bonusAmount}");
-		
+		Console.WriteLine($"El ISR calculado es: {ISRCalculated}");
+
 	}
 }

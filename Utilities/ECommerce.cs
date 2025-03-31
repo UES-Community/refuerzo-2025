@@ -45,33 +45,53 @@ public class ECommerce
         // 8 -- 3
         // 9 -- 2.5
 
-        if (appointmentsCount <= 3)
+        switch (appointmentsCount)
         {
-            priceToPay = 5.00;
-            totalToPay = appointmentsCount * priceToPay;
-        }
-
-        else
-        {
-            if (appointmentsCount <= 5)
-            {
+            case <= 3:
+                priceToPay = 5.00;
+                totalToPay = appointmentsCount * priceToPay;
+                break;
+            case <= 5:
                 priceToPay = 4.00;
                 totalToPay = 3 * 5.00 + (appointmentsCount - 3) * priceToPay;
-            }
-            else
-            {
-                if (appointmentsCount <= 8)
-                {
-                    priceToPay = 3.00;
-                    totalToPay = (3 * 5.00) + (2 * 4.00) + ((appointmentsCount - 5) * priceToPay);
-                }
-                else
-                {
-                    priceToPay = 2.50;
-                    totalToPay = (3 * 5.00) + (2 * 4.00) + (3 * 3.00) + ((appointmentsCount - 8) * priceToPay);
-                }
-            }
+                break;
+            case <= 8:
+                priceToPay = 3.00;
+                totalToPay = (3 * 5.00) + (2 * 4.00) + ((appointmentsCount - 5) * priceToPay);
+                break;
+            default:
+                priceToPay = 2.50;
+                totalToPay = (3 * 5.00) + (2 * 4.00) + (3 * 3.00) + ((appointmentsCount - 8) * priceToPay);
+                break;
         }
+
+        // if (appointmentsCount <= 3)
+        // {
+        //     priceToPay = 5.00;
+        //     totalToPay = appointmentsCount * priceToPay;
+        // }
+        //
+        // else
+        // {
+        //     if (appointmentsCount <= 5)
+        //     {
+        //         priceToPay = 4.00;
+        //         totalToPay = 3 * 5.00 + (appointmentsCount - 3) * priceToPay;
+        //     }
+        //     else
+        //     {
+        //         if (appointmentsCount <= 8)
+        //         {
+        //             priceToPay = 3.00;
+        //             totalToPay = (3 * 5.00) + (2 * 4.00) + ((appointmentsCount - 5) * priceToPay);
+        //         }
+        //         else
+        //         {
+        //             priceToPay = 2.50;
+        //             totalToPay = (3 * 5.00) + (2 * 4.00) + (3 * 3.00) + ((appointmentsCount - 8) * priceToPay);
+        //         }
+        //     }
+        // }
 
 
         Console.WriteLine($"Total a pagar: ${totalToPay}");

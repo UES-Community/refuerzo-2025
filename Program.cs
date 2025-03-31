@@ -7,42 +7,20 @@ class Program
 	static void Main(string[] args)
 	{
 
-		int periodInput;
-		double salaryInput, ISRCalculated;
-
-		// Solicitud de frecuencia de pago
-		Console.WriteLine("Por favor ingrese el periodo de pago con el que quiere trabajar: ");
-		Console.WriteLine("---------------------------------------------------------------- ");
-		Console.WriteLine(" 1) Semanal");
-		Console.WriteLine(" 2) Quincenal");
-		Console.WriteLine(" 3) Mensual");
-		Console.WriteLine("---------------------------------------------------------------- ");
+		int carwashCount = 0;
 		
-		periodInput = Validations.ValidateInteger(Console.ReadLine());
-		Console.Clear();
+		Console.WriteLine("Indiqueme la cantidad lavadas en el  carwash: ");	
+		carwashCount = Validations.ValidateInteger(Console.ReadLine());
 		
-		// Solcitud de salario
-		Console.WriteLine("Por favor ingrese el salario gravable: ");
-		salaryInput = Validations.ValidateDouble(Console.ReadLine());
-
-		// Seleccion de tabla con base a la frecuencia de pago
-		switch (periodInput)
+		if (carwashCount > 0)
 		{
-			case 1:
-				ISRCalculated = ISR.WeeklyTable(salaryInput);
-				break;
-			case 2:
-				ISRCalculated = ISR.BiweeklyTable(salaryInput);
-				break;
-			case 3:
-				ISRCalculated = ISR.MonthlyTable(salaryInput);
-				break;
-			default:
-				ISRCalculated = 0;
-				break;
+			ECommerce.PriceToPay(carwashCount);
+		}
+		else
+		{
+			Console.WriteLine($"Total a pagar: $0");
+			Console.WriteLine($"Actualmente su cuota de pago por cada cita es de: $5 ");
 		}
 		
-		Console.WriteLine($"El ISR calculado es: {ISRCalculated}");
-
 	}
 }

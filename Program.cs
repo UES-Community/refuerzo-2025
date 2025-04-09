@@ -6,9 +6,9 @@ class Program
 {
     static void Main(string[] args)
     {
-        int carwashCount;
+        int carwashCount = 1;
 
-        do
+        while (carwashCount < 10)
         {
             Console.WriteLine("Indiqueme la cantidad lavadas en el  carwash: ");
             carwashCount = Validations.ValidateInteger(Console.ReadLine());
@@ -22,7 +22,7 @@ class Program
                 Console.WriteLine($"Total a pagar: $0");
                 Console.WriteLine($"Actualmente su cuota de pago por cada cita es de: $5 ");
             }
-            
-        } while (carwashCount < 10);
+        }
+
     }
 }

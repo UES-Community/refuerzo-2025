@@ -4,23 +4,25 @@ using hello_world.Utilities;
 
 class Program
 {
-	static void Main(string[] args)
-	{
+    static void Main(string[] args)
+    {
+        int carwashCount;
 
-		int carwashCount = 0;
-		
-		Console.WriteLine("Indiqueme la cantidad lavadas en el  carwash: ");	
-		carwashCount = Validations.ValidateInteger(Console.ReadLine());
-		
-		if (carwashCount > 0)
-		{
-			ECommerce.PriceToPay(carwashCount);
-		}
-		else
-		{
-			Console.WriteLine($"Total a pagar: $0");
-			Console.WriteLine($"Actualmente su cuota de pago por cada cita es de: $5 ");
-		}
-		
-	}
+        do
+        {
+            Console.WriteLine("Indiqueme la cantidad lavadas en el  carwash: ");
+            carwashCount = Validations.ValidateInteger(Console.ReadLine());
+
+            if (carwashCount > 0)
+            {
+                ECommerce.PriceToPay(carwashCount);
+            }
+            else
+            {
+                Console.WriteLine($"Total a pagar: $0");
+                Console.WriteLine($"Actualmente su cuota de pago por cada cita es de: $5 ");
+            }
+            
+        } while (carwashCount < 10);
+    }
 }

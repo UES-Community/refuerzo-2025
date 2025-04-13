@@ -6,23 +6,60 @@ class Program
 {
     static void Main(string[] args)
     {
-        int carwashCount = 1;
-
-        while (carwashCount < 10)
+        bool isCurrentlyWorking = true;
+        int totalQuantity = 0;
+        
+        Console.WriteLine("--- Gestion de compra de toallas ---");
+        Console.WriteLine("Para evitar el cobro por envio, haga una compra igual o mayor a 3 sets");
+        Console.WriteLine("----------------------------------");
+        Console.ReadKey();
+        Console.Clear();
+        
+        
+        // Inicio del dia laboral
+        while (isCurrentlyWorking)
         {
-            Console.WriteLine("Indiqueme la cantidad lavadas en el  carwash: ");
-            carwashCount = Validations.ValidateInteger(Console.ReadLine());
 
-            if (carwashCount > 0)
+            int quantityPerUser;
+            string continueWithRegistries;
+            
+            Console.WriteLine("Ingrese la cantidad de sets de toallas a comprar");
+            quantityPerUser = Validations.ValidateInteger(Console.ReadLine());
+
+            // Mensaje informativo sobre el envio
+            if (quantityPerUser < 3)
             {
-                ECommerce.PriceToPay(carwashCount);
+                Console.WriteLine("Se cobrará el envio");
             }
             else
             {
-                Console.WriteLine($"Total a pagar: $0");
-                Console.WriteLine($"Actualmente su cuota de pago por cada cita es de: $5 ");
+                Console.WriteLine("No se cobrará el envio");
             }
+            
+            totalQuantity += quantityPerUser;
+            
+            Console.WriteLine("Desea ingresar otro pedido? (S/N): ");
+            continueWithRegistries = Console.ReadLine();
+            Console.Clear();
+
+            switch (continueWithRegistries)
+            {
+               case "S":
+                   isCurrentlyWorking = true;
+                   break;
+               case "N":
+                   isCurrentlyWorking = false;
+                   break;
+               default:
+                   isCurrentlyWorking = false;
+                   break;
+            } 
+            
         }
+        
+        Console.Clear();
+        Console.WriteLine(" --- Ejercicio de compra de toallas --- ");
+        Console.WriteLine($" Cantidad total de sets toallas vendidas: {totalQuantity} ");
 
     }
 }

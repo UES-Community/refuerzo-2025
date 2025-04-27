@@ -6,25 +6,24 @@ class Program
 {
     static void Main(string[] args)
     {
-        int underAgeCount = 0; //menores a 18
-        int age;
 
-        for (int i = 0; i < 2; i++)
-        {
-            Console.WriteLine($"---------------------{i + 1}----------------------");
-            Console.WriteLine("Por favor ingresa tu edad: ");
-            age = Validations.ValidateInteger(Console.ReadLine());
-            
-            if (age < 18)
-            {
-                underAgeCount++;
-            }
-            
-            Console.Clear();
-
-        }
+        string inputWord; //entrada
+        string invertedWord = ""; //salida
+        char[] charArray; //proceso
         
-        Console.WriteLine($"El conteo total de menores a 18 es: {underAgeCount}");
+        Console.WriteLine("Escribe una palabra: ");
+        inputWord = Console.ReadLine();
+
+        if (!string.IsNullOrWhiteSpace(inputWord)) 
+        {
+            charArray = inputWord.ToCharArray();
+            foreach (char caracter in charArray) 
+            {
+                invertedWord = caracter + invertedWord;  
+            } 
+            
+            Console.WriteLine($"La palabra invertida es: {invertedWord}");
+        }
 
     }
 }

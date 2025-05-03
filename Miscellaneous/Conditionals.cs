@@ -77,4 +77,57 @@ public class Conditionals
 
        return porcent;
     }
+
+    public static double GetAmountToPayDaily(int roomType)
+    {
+       double amountToPay;
+
+       switch (roomType)
+       {
+          case 1:
+              amountToPay = 120;
+              break;
+          case 2:
+              amountToPay = 155;
+              break;
+          case 3:
+              amountToPay = 210;
+              break;
+          case 4:
+              amountToPay = 285;
+              break;
+          case 5:
+              amountToPay = 400;
+              break;
+          default:
+              amountToPay = 0;
+              break;
+       }
+       
+       return amountToPay;
+    }
+
+    public static double GetDiscountPerDays(int days)
+    {
+        double discount;
+
+        if (days > 5)
+        {
+            discount = 0.10;
+        }
+        else if (days > 10)
+        {
+            discount = 0.15;
+        }
+        else if (days > 15)
+        {
+           discount = 0.20; 
+        }
+        else
+        {
+            discount = 0.0;
+        }
+        
+        return discount;
+    }
 }

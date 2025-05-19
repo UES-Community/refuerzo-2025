@@ -1,6 +1,6 @@
 ﻿namespace hello_world.Utilities;
 
-public class Operations
+public struct Operations
 {
 	/// <summary>
 	/// Resta dos números

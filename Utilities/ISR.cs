@@ -2,10 +2,12 @@
 
 public class ISR
 {
+    //atributos
     public static double porcentage1 = 0.10;
     public static double percentage2 = 0.20;
     public static double percentage3 = 0.30;
 
+    //metodos
     public static double MonthlyTable(double salary)
     {
         double retentionCalculated;

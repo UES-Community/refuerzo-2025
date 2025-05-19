@@ -1,36 +1,54 @@
 ﻿using System;
 using hello_world.Miscellaneous;
 using hello_world.Utilities;
+using System.Data;
+using System.Data.OleDb;
 
 class Program
 {
     static void Main(string[] args)
     {
-        int[] myScores = {12, 93,6 , 10, 1}; //notas de mis 5 materias de la U
-        string[] myAsignatures = { "MIP", "SGI", "EBB", "RRHH", "TAD"};
-        int[] firstThree = new int[5];
-        int oddNumber = 0;
-        string myFavoriteAsignature;
-        int position;
+        const string FILE_PATH = @"C:\Users\kevin\3D Objects\development\refuerzo-2025\Content\IO-IAI115-OLEDB.xlsx";
+        const string CONNECTION_STRING =
+            $@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={FILE_PATH};Extended Properties='Excel 12.0 Xml;HDR=YES;'";
 
-        // Array.Copy(myScores, firstThree, 3);// copiaba 3 de myScores -> firstThree
-        //myScores.CopyTo(firstThree, 0); //5
-        // oddNumber = Array.Find(myScores, numerito => numerito%2 != 0); //6/2 = 3 %0 ; 7/2 = 3 %1; 
-        // myFavoriteAsignature = Array.Find(myAsignatures, asignature => asignature == "IAI");
-        // position = Array.IndexOf(myScores, 10); //indice = posicion; posicion = 0; [0, 1]
-        Console.WriteLine($"Arreglo de sin ordenar: {myScores}");
-        foreach (int i in myScores)
+        using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))
         {
-            Console.WriteLine(i);
-        }
-        
-        Array.Sort(myScores);
+            conn.Open();
+            OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM [Hoja1$]", conn);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
 
-        Console.WriteLine($"Arreglo de notas ordenado: {myScores}");
-        foreach (int i in myScores)
-        {
-            Console.WriteLine(i);
+            table.Columns.Add("Monto calculado", typeof(double)); // salary * 0.3
+            table.Columns.Add("Monto a depositar", typeof(double)); // salary * 0.3 + salarySplited
+
+            foreach (DataRow row in table.Rows)
+            {
+                //lectura
+                double salary = Convert.ToDouble(row["salary"]);
+                double year = Convert.ToDouble(row["years"]);
+
+
+                //operaciones
+                double salarySplited = salary / 2;
+                double salaryMultplied = 0;
+
+                if (year > 3)
+                {
+                    salaryMultplied = salary * 0.30;
+                }
+
+                double amountTotal = salaryMultplied + salarySplited;
+
+                row["Monto calculado"] = salaryMultplied;
+                row["Monto a depositar"] = amountTotal;
+            }
+
+            foreach (DataRow row in table.Rows)
+            {
+                Console.WriteLine(
+                    $"salario: {row["salary"]}, anios: {row["years"]}, porcentaje: {row["Monto calculado"]}, total: {row["Monto a depositar"]}");
+            }
         }
     }
-
 }

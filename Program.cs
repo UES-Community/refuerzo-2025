@@ -3,52 +3,57 @@ using hello_world.Miscellaneous;
 using hello_world.Utilities;
 using System.Data;
 using System.Data.OleDb;
+using System.Xml.Serialization;
+
+public struct Device
+{
+   public string Type { get; set; } 
+   public string Brand { get; set; }
+   public string Model { get; set; }
+}
 
 class Program
 {
     static void Main(string[] args)
     {
-        const string FILE_PATH = @"C:\Users\kevin\3D Objects\development\refuerzo-2025\Content\IO-IAI115-OLEDB.xlsx";
-        const string CONNECTION_STRING =
-            $@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source={FILE_PATH};Extended Properties='Excel 12.0 Xml;HDR=YES;'";
-
-        using (OleDbConnection conn = new OleDbConnection(CONNECTION_STRING))
+        List<Device> devices = new List<Device>
         {
-            conn.Open();
-            OleDbDataAdapter adapter = new OleDbDataAdapter("SELECT * FROM [Hoja1$]", conn);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
+            new Device{ Type="LAPTOP", Brand = "ACER", Model = "AC1010D"},
+            new Device{ Type="ROUTER", Brand = "AZUS", Model = "ROU233T"},
+            new Device{ Type="TABLET", Brand = "SAMSUNG", Model = "SAM123H"},
+            new Device{ Type="CELULAR", Brand = "HUAWEI", Model = "HU1234G"},
+        };
+        
+        //XML
+        XmlSerializer serializer = new XmlSerializer(typeof(List<Device>), new XmlRootAttribute("Devices"));
+        string xmlFilePath = "dispositivosElectronicos.xml";
 
-            table.Columns.Add("Monto calculado", typeof(double)); // salary * 0.3
-            table.Columns.Add("Monto a depositar", typeof(double)); // salary * 0.3 + salarySplited
-
-            foreach (DataRow row in table.Rows)
+        //Un espacio seguro para errores
+        try
+        {
+            using (StreamWriter sw = new StreamWriter(xmlFilePath))
             {
-                //lectura
-                double salary = Convert.ToDouble(row["salary"]);
-                double year = Convert.ToDouble(row["years"]);
-
-
-                //operaciones
-                double salarySplited = salary / 2;
-                double salaryMultplied = 0;
-
-                if (year > 3)
-                {
-                    salaryMultplied = salary * 0.30;
-                }
-
-                double amountTotal = salaryMultplied + salarySplited;
-
-                row["Monto calculado"] = salaryMultplied;
-                row["Monto a depositar"] = amountTotal;
-            }
-
-            foreach (DataRow row in table.Rows)
-            {
-                Console.WriteLine(
-                    $"salario: {row["salary"]}, anios: {row["years"]}, porcentaje: {row["Monto calculado"]}, total: {row["Monto a depositar"]}");
-            }
+                serializer.Serialize(sw, devices);
+            } 
+            
+            Console.WriteLine("XML file generated successfully");
         }
+        catch (Exception ex)
+        {
+           Console.WriteLine($"Something went wrong: {ex.Message}"); 
+        }
+        
+        //Mostrar el contenido en el orden solicitado
+        Console.WriteLine("SHOWING THE CONTENT OF DEVICES");
+        foreach (Device d in devices)
+        {
+            //tipo
+            //marca
+            //modelo
+           Console.WriteLine(d.Type); 
+           Console.WriteLine(d.Brand); 
+           Console.WriteLine(d.Model); 
+        }
+        
     }
 }
